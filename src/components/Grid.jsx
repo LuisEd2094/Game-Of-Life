@@ -13,9 +13,31 @@ const Grid = () =>{
         }
         return rows;
     });
-
     const [running, set_running] = useState(false);
+    const [is_dragging, set_is_dragging] = useState(false);
+    const [show_border, set_show_border] = useState(false);
+    
     const running_ref = useRef(running);
+    
+
+    const handle_mouse_down = (i , j) =>
+    {
+        set_is_dragging(true);
+        const new_grid = grid.slice();
+        new_grid[i][j] = !grid[i][j];
+        set_grid(new_grid);
+    }
+    const handle_mouse_enter = (i, j) =>
+    {
+        if (!is_dragging) return;
+        const new_grid = grid.slice();
+        new_grid[i][j] = !grid[i][j];
+        set_grid(new_grid);
+    }
+    const handle_mouse_up = () =>
+    {
+        set_is_dragging(false);
+    }
 
     const run_simulation = useCallback(() =>
     {
@@ -29,23 +51,25 @@ const Grid = () =>{
 
     return (
         <>
-        <div className='Grid' style={{ display: 'grid', gridTemplateColumns: `repeat(${num_cols}, 20px)` }}>
-
+        <div className='Grid' 
+        style={{ display: 'grid', gridTemplateColumns: `repeat(${num_cols}, 20px)` }}
+        onMouseUp={handle_mouse_up}
+        onMouseLeave={handle_mouse_up}
+        >
+        
             {grid.map((row,i) =>
             row.map((col,j)=>(
                 <div
-                    key={`${i}-${j}`}
                     style={{
                         width: 20,
                         height: 20,
                         backgroundColor: grid[i][j] ? 'black' : undefined,
-                        border: 'solid 1px gray'
+                        outline: show_border ? 'solid 1px gray' : "none"
                     }}
-                    onClick={() =>{
-                        const new_grid = grid.slice();
-                        new_grid[i][j] = !grid[i][j];
-                        set_grid(new_grid);
-                    }}
+                    onMouseDown={() =>
+                        handle_mouse_down(i, j)
+                    }
+                    onMouseEnter={() => handle_mouse_enter(i, j)}
                 />
             ) ) )}
         </div>
@@ -66,6 +90,13 @@ const Grid = () =>{
             }
         >
         {running ? 'Stop' : 'Start'}
+        </button>
+        <button onClick={() =>
+            {
+                set_show_border(!show_border);
+            }
+        }>
+            {show_border ? "Hide border" : "Show border"}
         </button>
         </>
     )
