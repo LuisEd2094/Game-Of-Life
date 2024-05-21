@@ -1,5 +1,5 @@
 1. Add More Controls
-Speed Control: Add a slider or input to control the simulation speed.
+~~Speed Control: Add a slider or input to control the simulation speed.~~
 Grid Size Control: Allow users to change the grid size dynamically.
 Pattern Presets: Provide buttons for popular patterns like gliders, oscillators, and spaceships.
 2. Color Customization
