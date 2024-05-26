@@ -2,6 +2,7 @@ import React, {useState, useCallback, useRef} from 'react';
 import './Grid.css';
 import {Run, GridSizeControl, BorderControl, ChangeColor, SpeedControl} from './GridControls.jsx';
 import { CreateGrid } from './CreateGrid.jsx';
+import { PresetPattern } from './PresetPattern.jsx';
 
 const Grid = () =>{
 
@@ -119,8 +120,10 @@ const Grid = () =>{
             grid={grid}
             set_grid={set_grid}
         />
+
         <CreateGrid
             grid={grid}
+            set_grid={set_grid}
             color={color}
             cols={cols}
             handle_mouse_up={handle_mouse_up}

@@ -1,9 +1,9 @@
 1. Add More Controls
 ~~Speed Control: Add a slider or input to control the simulation speed.~~
-Grid Size Control: Allow users to change the grid size dynamically.
+~~Grid Size Control: Allow users to change the grid size dynamically.~~
 Pattern Presets: Provide buttons for popular patterns like gliders, oscillators, and spaceships.
 2. Color Customization
-Allow users to change the colors of live and dead cells for a personalized look.
+~~Allow users to change the colors of live and dead cells for a personalized look.~~
 3. Save and Load Configurations
 Implement functionality to save the current grid configuration to local storage or download it as a file.
 Allow users to upload a saved configuration to restore a specific state.
